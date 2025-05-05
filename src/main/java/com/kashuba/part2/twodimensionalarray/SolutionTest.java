@@ -1,7 +1,9 @@
 package com.kashuba.part2.twodimensionalarray;
 
 import com.kashuba.part2.twodimensionalarray.model.AverageCommits;
+
 import java.util.logging.Logger;
+
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
