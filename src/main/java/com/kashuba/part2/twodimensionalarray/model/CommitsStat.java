@@ -41,10 +41,6 @@ public class CommitsStat {
         this.monthsNumber = 0;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Integer getCommitsNumber() {
         return commitsNumber;
     }

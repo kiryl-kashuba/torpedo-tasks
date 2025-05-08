@@ -10,50 +10,55 @@ import java.util.Map;
 
 public class Solution {
 
-  // return the list with Comparator to have an order
-  // HashMap<String, Integer[][]> or HashMap<String, List<Integer>>
-  public List<AverageCommits> calculateAverage(String[][] monthCommits) {
-    Map<String, CommitsStat> countedMonthCommits = gridToMap(monthCommits);
-    List<AverageCommits> sortedCommitsStats = mapToList(countedMonthCommits);
+    public List<AverageCommits> calculateAverage(String[][] monthCommits) {
+        Map<String, CommitsStat> countedMonthCommits = gridToMap(monthCommits);
+        List<AverageCommits> sortedCommitsStats = mapToList(countedMonthCommits);
 
-    sortedCommitsStats.sort((a, b) -> Double.compare(b.getAverageCommits(), a.getAverageCommits()));
-    return sortedCommitsStats;
-  }
-
-
-  private List<AverageCommits> mapToList(Map<String, CommitsStat> countedMonthCommits) {
-    List<AverageCommits> sortedCommitsStats = new ArrayList<>();
-
-    for (Map.Entry<String, CommitsStat> countedMonthCommit : countedMonthCommits.entrySet()) {
-      String name = countedMonthCommit.getKey();
-      CommitsStat value = countedMonthCommit.getValue();
-
-      Double average = (double) value.getCommitsNumber() / value.getMonthsNumber();
-
-      sortedCommitsStats.add(new AverageCommits(name, average));
+        sortedCommitsStats.sort((a, b) -> Double.compare(b.getAverageCommitsNumber(), a.getAverageCommitsNumber()));
+        return sortedCommitsStats;
     }
 
-    return sortedCommitsStats;
-  }
+    private Map<String, CommitsStat> gridToMap(String[][] monthCommits) {
+        Map<String, CommitsStat> countedMonthCommits = new HashMap<>();
 
-  private Map<String, CommitsStat> gridToMap(String[][] monthCommits) {
-    Map<String, CommitsStat> countedMonthCommits = new HashMap<>();
+        for (String[] monthCommit : monthCommits) {
+            String rawName = monthCommit[0];
+            String commitsNumber = monthCommit[1];
+            if (monthCommit.length > 2 || rawName == null ||
+                commitsNumber == null || commitsNumber.isEmpty() || rawName.isEmpty()) { // All these "||" in one place is NOT okay. But I don't have better idea for now
+                continue;
+            }
+            int intCommitsNumber;
+            try {
+                intCommitsNumber = Integer.parseInt(commitsNumber);
+            } catch (NumberFormatException e) {
+                continue;
+            }
+            String name = capitalizeFirstLetter(rawName);
 
-    for (String[] monthCommit : monthCommits) {
-      String name = capitalizeFirstLetter(monthCommit[0]);
-      Integer commitsNumber = Integer.parseInt(monthCommit[1]);
-
-      countedMonthCommits.computeIfAbsent(name, k -> new CommitsStat(name))
-          .addCommits(commitsNumber);
+            countedMonthCommits.computeIfAbsent(name, k -> new CommitsStat(name))
+                    .addCommits(intCommitsNumber);
+        }
+        return countedMonthCommits;
     }
-    return countedMonthCommits;
-  }
 
-  private String capitalizeFirstLetter(String name) {
-    if (name == null || name.isEmpty()) {
-      return name;
+    private List<AverageCommits> mapToList(Map<String, CommitsStat> countedMonthCommits) {
+        List<AverageCommits> sortedCommitsStats = new ArrayList<>();
+
+        for (Map.Entry<String, CommitsStat> countedMonthCommit : countedMonthCommits.entrySet()) {
+            String name = countedMonthCommit.getKey();
+            CommitsStat value = countedMonthCommit.getValue();
+
+            Double average = (double) value.getCommitsNumber() / value.getMonthsNumber();
+
+            sortedCommitsStats.add(new AverageCommits(name, average));
+        }
+        return sortedCommitsStats;
     }
-    name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
-    return name;
-  }
+
+
+    private String capitalizeFirstLetter(String name) {
+        name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+        return name;
+    }
 }

@@ -5,19 +5,15 @@ import java.util.Objects;
 public class AverageCommits {
 
     private final String name;
-    private Double AverageCommits;
+    private final Double averageCommitsNumber;
 
-    public AverageCommits(String name, Double averageCommits) {
+    public AverageCommits(String name, Double averageCommitsNumber) {
         this.name = name;
-        AverageCommits = averageCommits;
+        this.averageCommitsNumber = averageCommitsNumber;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Double getAverageCommits() {
-        return AverageCommits;
+    public Double getAverageCommitsNumber() {
+        return averageCommitsNumber;
     }
 
     @Override
@@ -28,13 +24,13 @@ public class AverageCommits {
         AverageCommits that = (AverageCommits) o;
 
         if (!Objects.equals(name, that.name)) return false;
-        return Objects.equals(AverageCommits, that.AverageCommits);
+        return Objects.equals(averageCommitsNumber, that.averageCommitsNumber);
     }
 
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (AverageCommits != null ? AverageCommits.hashCode() : 0);
+        result = 31 * result + (averageCommitsNumber != null ? averageCommitsNumber.hashCode() : 0);
         return result;
     }
 
@@ -42,9 +38,7 @@ public class AverageCommits {
     public String toString() {
         return "AverageCommits{" +
                 "name='" + name + '\'' +
-                ", AverageCommits=" + AverageCommits +
+                ", AverageCommits=" + averageCommitsNumber +
                 '}';
     }
-
-
 }
