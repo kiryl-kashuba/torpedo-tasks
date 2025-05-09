@@ -42,7 +42,7 @@ public class Solution {
         return countedMonthCommits;
     }
 
-    private List<AverageCommits> mapToList(Map<String, CommitsStat> countedMonthCommits) {
+    private List<AverageCommits> mapToList(Map<String, CommitsStat> countedMonthCommits) { // I shouldn't return it as a List, but I took "presents them as a list" too literal and didn't clarify this moment
         List<AverageCommits> sortedCommitsStats = new ArrayList<>();
 
         for (Map.Entry<String, CommitsStat> countedMonthCommit : countedMonthCommits.entrySet()) {

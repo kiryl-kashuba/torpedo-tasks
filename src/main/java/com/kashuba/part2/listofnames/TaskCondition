@@ -1,0 +1,9 @@
+You have a list of names:
+List<String> names = List.of("Anna", "Bartek", "Celina", "Adam", "Aga", "Filip");
+
+Do the following:
+1. Use Predicate<String> to select names starting with "A".
+2. Use Function<String, String> to change them to "Name: XYZ" in uppercase.
+3. Collect the result into a list.
+4. If the list is not empty – use Consumer<String> to print each one.
+5. If the list is empty – use Optional and print "No results".
