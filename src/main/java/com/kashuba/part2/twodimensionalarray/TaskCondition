@@ -1,6 +1,0 @@
-There is a two-dimensional array:
-
-String[][] s = {{"Mikołaj", "10"}, {"Sonia", "53"}, {"Kiryl", "30"}, {"Sonia","40"}, {"Hubert","80"}, {"Kiryl", "4"}};
-Which represents the number of commits made in a month in the company.
-
-Write code that calculates the average number of commits for each person and presents them as a list in descending order.
