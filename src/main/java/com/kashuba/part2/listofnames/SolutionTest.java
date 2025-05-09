@@ -9,8 +9,7 @@ public class SolutionTest {
     @Test
     public void testModifyNames() {
         Solution solution = new Solution();
-//        List<String> names = List.of("Anna", "Bartek", "Celina", "Adam", "Aga", "Filip");
-        List<String> names = List.of("Snna", "Bartek", "Celina", "Sdam", "Sga", "Filip");
+        List<String> names = List.of("Anna", "Bartek", "Celina", "Adam", "Aga", "Filip");
 
         solution.modifyNames(names);
     }
